@@ -6,45 +6,142 @@
     <title>Catálogo de Produtos Artesanais</title>
 </head>
 <body>
-    <h1>Catálogo de Produtos Artesanais</h1>
-    <p>Este projeto apresenta um catálogo digital de produtos artesanais feitos por pequenos produtores locais.</p>
 
-    <h2>Categorias</h2>
-    <ul>
-        <li>Cerâmica</li>
-        <li>Tecelagem</li>
-        <li>Bijuterias</li>
-    </ul>
+    <header>
+        <h1>Catálogo de Produtos Artesanais</h1>
+        <p>Este projeto apresenta um catálogo digital de produtos artesanais feitos por pequenos produtores locais.</p>
+    </header>
 
-    <h2>Produtos em Destaque</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Preço</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Vaso de cerâmica pintado à mão</td>
-                <td>R$ 85,00</td>
-            </tr>
-            <tr>
-                <td>Manta de tear artesanal</td>
-                <td>R$ 150,00</td>
-            </tr>
-        </tbody>
-    </table>
+    <main>
 
-    <h2>Saiba mais</h2>
-    <p>
-        <a href="https://www.artesanatobrasil.gov.br" target="_blank" rel="noopener noreferrer">
-            Artesanato Brasil - Portal Oficial
-        </a>
-    </p>
+        <section id="categorias" aria-labelledby="categorias-titulo">
+            <h2 id="categorias-titulo">Categorias</h2>
+            <ul>
+                <li>Cerâmica</li>
+                <li>Tecelagem</li>
+                <li>Bijuterias</li>
+            </ul>
+        </section>
 
-    <h2>Exemplo de Peça</h2>
-    <img src="assets/images/fotodovaso.jpg" alt="Vaso de cerâmica artesanal pintado à mão com detalhes em azul">
+        <section id="produtos" aria-labelledby="produtos-titulo">
+            <h2 id="produtos-titulo">Produtos em Destaque</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vaso de cerâmica pintado à mão</td>
+                        <td>R$ 85,00</td>
+                    </tr>
+                    <tr>
+                        <td>Manta de tear artesanal</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Exemplo de Peça</h3>
+            <figure>
+                <img src="assets/images/fotodovaso.jpg" alt="Vaso de cerâmica artesanal pintado à mão com detalhes em azul">
+                <figcaption>Vaso de cerâmica pintado à mão, uma das peças em destaque no catálogo.</figcaption>
+            </figure>
+        </section>
+
+        <section id="avaliacao" aria-labelledby="avaliacao-titulo">
+            <h2 id="avaliacao-titulo">Avalie um Produto</h2>
+            <p>Já comprou uma de nossas peças? Conte pra gente o que achou.</p>
+
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Seus dados</legend>
+
+                    <div class="campo">
+                        <label for="nome-avaliador">Nome completo</label>
+                        <input
+                            type="text"
+                            id="nome-avaliador"
+                            name="nome-avaliador"
+                            required
+                            minlength="3"
+                            placeholder="Digite seu nome">
+                    </div>
+
+                    <div class="campo">
+                        <label for="email-avaliador">E-mail</label>
+                        <input
+                            type="email"
+                            id="email-avaliador"
+                            name="email-avaliador"
+                            required
+                            pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}"
+                            placeholder="seuemail@exemplo.com">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Sobre a avaliação</legend>
+
+                    <div class="campo">
+                        <label for="produto-avaliado">Produto avaliado</label>
+                        <select id="produto-avaliado" name="produto-avaliado" required>
+                            <option value="">Selecione um produto</option>
+                            <option value="vaso-ceramica">Vaso de cerâmica pintado à mão</option>
+                            <option value="manta-tear">Manta de tear artesanal</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="nota-produto">Nota (de 1 a 5)</label>
+                        <input
+                            type="number"
+                            id="nota-produto"
+                            name="nota-produto"
+                            min="1"
+                            max="5"
+                            step="1"
+                            required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="data-compra">Data da compra</label>
+                        <input
+                            type="date"
+                            id="data-compra"
+                            name="data-compra">
+                    </div>
+
+                    <div class="campo">
+                        <label for="comentario-avaliador">Comentário</label>
+                        <textarea
+                            id="comentario-avaliador"
+                            name="comentario-avaliador"
+                            rows="4"
+                            placeholder="Conte como foi sua experiência com o produto"></textarea>
+                    </div>
+                </fieldset>
+
+                <button type="submit">Enviar avaliação</button>
+            </form>
+        </section>
+
+        <section id="saiba-mais" aria-labelledby="saiba-mais-titulo">
+            <h2 id="saiba-mais-titulo">Saiba mais</h2>
+            <p>
+                <a href="https://www.artesanatobrasil.gov.br" target="_blank" rel="noopener noreferrer">
+                    Artesanato Brasil - Portal Oficial
+                </a>
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Catálogo de Produtos Artesanais. Projeto Integrador.</p>
+    </footer>
 
 </body>
 </html>
