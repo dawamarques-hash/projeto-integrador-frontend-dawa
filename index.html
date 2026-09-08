@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuteVibe - Loja de Artigos de Futevôlei</title>
+    <meta name="description" content="FuteVibe é uma loja especializada em artigos de futevôlei: bolas, redes, roupas esportivas e acessórios para praticantes do esporte.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #fdf6e9;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #0077b6, #00b4d8);
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .header-conteudo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo-loja h1 {
+            font-size: 1.8rem;
+        }
+
+        .logo-loja p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-weight: bold;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* ===== SEÇÃO INÍCIO ===== */
+        #inicio {
+            background: linear-gradient(135deg, #90e0ef, #caf0f8);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        #inicio h1 {
+            font-size: 2.5rem;
+            color: #023e8a;
+            margin-bottom: 1rem;
+        }
+
+        #inicio p {
+            max-width: 650px;
+            margin: 0 auto 1rem auto;
+            font-size: 1.1rem;
+        }
+
+        .frase-chamativa {
+            font-weight: bold;
+            font-style: italic;
+            color: #ff6d00;
+            margin-bottom: 1.5rem;
+        }
+
+        .botao-cta {
+            display: inline-block;
+            background-color: #ff6d00;
+            color: #ffffff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .botao-cta:hover {
+            background-color: #e65c00;
+            transform: translateY(-3px);
+        }
+
+        /* ===== SEÇÕES GERAIS ===== */
+        section {
+            padding: 3rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #023e8a;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* ===== CATEGORIAS ===== */
+        .lista-categorias {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .lista-categorias li {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .lista-categorias li:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ===== CATÁLOGO DE PRODUTOS ===== */
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+        }
+
+        article.produto {
+            background-color: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            transition: transform 0.2s ease;
+        }
+
+        article.produto:hover {
+            transform: translateY(-6px);
+        }
+
+        article.produto img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .info-produto {
+            padding: 1rem;
+        }
+
+        .info-produto h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            color: #023e8a;
+        }
+
+        .info-produto .categoria {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 0.4rem;
+        }
+
+        .info-produto .preco {
+            font-weight: bold;
+            color: #ff6d00;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .botao-comprar {
+            display: inline-block;
+            background-color: #0077b6;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .botao-comprar:hover {
+            background-color: #023e8a;
+        }
+
+        /* ===== TABELA ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background-color: #0077b6;
+            color: #ffffff;
+        }
+
+        th, td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f1f9fc;
+        }
+
+        /* ===== SOBRE NÓS / BENEFÍCIOS ===== */
+        .lista-beneficios {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .lista-beneficios li {
+            background-color: #ffffff;
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        /* ===== LINK EXTERNO ===== */
+        .link-externo {
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #0077b6;
+            border-bottom: 2px solid #0077b6;
+        }
+
+        /* ===== FORMULÁRIO DE CONTATO ===== */
+        form {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .campo-formulario {
+            margin-bottom: 1.2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+        }
+
+        input, textarea {
+            padding: 0.7rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button[type="submit"] {
+            background-color: #ff6d00;
+            color: #ffffff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #e65c00;
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background-color: #023e8a;
+            color: #ffffff;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .redes-sociais {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .redes-sociais a {
+            font-weight: bold;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-conteudo">
+            <div class="logo-loja">
+                <h1>FuteVibe</h1>
+                <p>Tudo para você jogar futevôlei com estilo</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#sobre">Sobre nós</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===== SEÇÃO INÍCIO ===== -->
+        <section id="inicio">
+            <h1>FuteVibe - Loja de Artigos de Futevôlei</h1>
+            <p>Somos uma loja especializada em produtos para quem vive o futevôlei: bolas, redes, roupas esportivas e acessórios pensados para o seu melhor desempenho na areia.</p>
+            <p class="frase-chamativa">Areia, sol e futevôlei: equipamentos que acompanham o seu jogo.</p>
+            <a href="#produtos" class="botao-cta">Ver produtos</a>
+        </section>
+
+        <!-- ===== CATEGORIAS ===== -->
+        <section id="categorias">
+            <h2>Categorias</h2>
+            <ul class="lista-categorias">
+                <li>Bolas de Futevôlei</li>
+                <li>Roupas Esportivas</li>
+                <li>Redes</li>
+                <li>Acessórios</li>
+                <li>Kits de Futevôlei</li>
+            </ul>
+        </section>
+
+        <!-- ===== CATÁLOGO DE PRODUTOS ===== -->
+        <section id="produtos">
+            <h2>Nossos Produtos</h2>
+            <div class="grid-produtos">
+
+                <article class="produto">
+                    <img src="assets/images/bola-futevolei.png" alt="Bola oficial para prática de futevôlei">
+                    <div class="info-produto">
+                        <h3>Bola de Futevôlei Oficial</h3>
+                        <p>Bola emborrachada, ideal para treinos e partidas na areia.</p>
+                        <p class="categoria">Categoria: Bolas de Futevôlei</p>
+                        <p class="preco">R$ 149,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/rede-futevolei.png" alt="Rede oficial de futevôlei com suportes">
+                    <div class="info-produto">
+                        <h3>Rede de Futevôlei Profissional</h3>
+                        <p>Rede resistente com suportes reforçados para quadras de areia.</p>
+                        <p class="categoria">Categoria: Redes</p>
+                        <p class="preco">R$ 898,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/camisa-futevolei.png" alt="Camisa esportiva dry-fit para futevôlei">
+                    <div class="info-produto">
+                        <h3>Camisa Esportiva Dry-Fit</h3>
+                        <p>Tecido leve e respirável, ideal para dias quentes na praia.</p>
+                        <p class="categoria">Categoria: Roupas Esportivas</p>
+                        <p class="preco">R$ 79,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/shorts-futevolei.png" alt="Shorts esportivo masculino para futevôlei">
+                    <div class="info-produto">
+                        <h3>Shorts Esportivo Masculino</h3>
+                        <p>Confortável e resistente, feito para alta movimentação.</p>
+                        <p class="categoria">Categoria: Roupas Esportivas</p>
+                        <p class="preco">R$ 59,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/oculos-futevolei.png" alt="Óculos de sol esportivo para praia">
+                    <div class="info-produto">
+                        <h3>Óculos de Sol Esportivo</h3>
+                        <p>Proteção UV com armação leve, perfeito para dias de sol.</p>
+                        <p class="categoria">Categoria: Acessórios</p>
+                        <p class="preco">R$ 129,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/bone-futevolei.png" alt="Boné esportivo para prática de futevôlei">
+                    <div class="info-produto">
+                        <h3>Boné Esportivo</h3>
+                        <p>Proteção solar para a cabeça durante os jogos na areia.</p>
+                        <p class="categoria">Categoria: Acessórios</p>
+                        <p class="preco">R$ 49,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/kit-futevolei.png" alt="Kit iniciante completo de futevôlei">
+                    <div class="info-produto">
+                        <h3>Kit Iniciante Futevôlei</h3>
+                        <p>Bola, camisa e boné em um kit completo para começar a jogar.</p>
+                        <p class="categoria">Categoria: Kits de Futevôlei</p>
+                        <p class="preco">R$ 249,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/tornozeleira-futevolei.png" alt="Tornozeleira de proteção esportiva">
+                    <div class="info-produto">
+                        <h3>Tornozeleira de Proteção</h3>
+                        <p>Suporte e proteção para os tornozelos durante o jogo.</p>
+                        <p class="categoria">Categoria: Acessórios</p>
+                        <p class="preco">R$ 39,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/luva-futevolei.png" alt="Luvas de treino para futevôlei">
+                    <div class="info-produto">
+                        <h3>Luvas para Treino</h3>
+                        <p>Aderência e conforto para treinos de saque e manchete.</p>
+                        <p class="categoria">Categoria: Acessórios</p>
+                        <p class="preco">R$ 34,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/mochila-futevolei.png" alt="Mochila esportiva para levar equipamentos de futevôlei">
+                    <div class="info-produto">
+                        <h3>Mochila Esportiva</h3>
+                        <p>Espaço amplo para transportar bola, roupas e acessórios.</p>
+                        <p class="categoria">Categoria: Acessórios</p>
+                        <p class="preco">R$ 159,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/garrafa-futevolei.png" alt="Garrafa térmica esportiva para hidratação">
+                    <div class="info-produto">
+                        <h3>Garrafa Térmica Esportiva</h3>
+                        <p>Mantém a água gelada durante os treinos e partidas.</p>
+                        <p class="categoria">Categoria: Acessórios</p>
+                        <p class="preco">R$ 69,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="assets/images/toalha-futevolei.png" alt="Toalha esportiva de praia para futevôlei">
+                    <div class="info-produto">
+                        <h3>Toalha Esportiva de Praia</h3>
+                        <p>Toalha de secagem rápida, ideal para o pós-jogo na praia.</p>
+                        <p class="categoria">Categoria: Acessórios</p>
+                        <p class="preco">R$ 44,90</p>
+                        <a href="#contato" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ===== TABELA DE PRODUTOS ===== -->
+        <section id="tabela-produtos">
+            <h2>Tabela de Produtos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bola de Futevôlei Oficial</td>
+                        <td>Bolas de Futevôlei</td>
+                        <td>R$ 149,90</td>
+                    </tr>
+                    <tr>
+                        <td>Rede de Futevôlei Profissional</td>
+                        <td>Redes</td>
+                        <td>R$ 389,90</td>
+                    </tr>
+                    <tr>
+                        <td>Camisa Esportiva Dry-Fit</td>
+                        <td>Roupas Esportivas</td>
+                        <td>R$ 79,90</td>
+                    </tr>
+                    <tr>
+                        <td>Kit Iniciante Futevôlei</td>
+                        <td>Kits de Futevôlei</td>
+                        <td>R$ 249,90</td>
+                    </tr>
+                    <tr>
+                        <td>Mochila Esportiva</td>
+                        <td>Acessórios</td>
+                        <td>R$ 159,90</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== SOBRE NÓS ===== -->
+        <section id="sobre">
+            <h2>Sobre Nós</h2>
+            <p>A FuteVibe nasceu da paixão pelo futevôlei e pelo estilo de vida da praia. Somos uma loja especializada em equipamentos e vestuário esportivo voltados para quem pratica esse esporte de forma recreativa ou competitiva.</p>
+            <p>Nosso objetivo é oferecer produtos de qualidade que unam desempenho, conforto e durabilidade, atendendo desde iniciantes até atletas experientes.</p>
+            <p>Nosso público-alvo são praticantes de futevôlei, frequentadores de praia e entusiastas de esportes de areia que buscam equipamentos confiáveis para o seu dia a dia esportivo.</p>
+            <p>Trabalhamos com compromisso de qualidade, selecionando cuidadosamente cada produto para garantir a melhor experiência dentro e fora da quadra.</p>
+        </section>
+
+        <!-- ===== BENEFÍCIOS ===== -->
+        <section id="beneficios">
+            <h2>Por que escolher a FuteVibe</h2>
+            <ul class="lista-beneficios">
+                <li>Produtos selecionados</li>
+                <li>Atendimento especializado</li>
+                <li>Variedade de produtos</li>
+                <li>Qualidade garantida</li>
+                <li>Envio para todo o Brasil</li>
+            </ul>
+
+            <!--
+                Os atributos abaixo são utilizados por segurança e desempenho:
+                target="_blank" abre o link em uma nova aba, sem fechar o site da loja.
+                rel="noopener noreferrer" impede que a página aberta tenha acesso à
+                janela original (noopener) e evita o envio de dados do referenciador (noreferrer).
+            -->
+            <p style="text-align:center; margin-top: 1.5rem;">
+                Quer saber mais sobre o esporte?
+                <a href="https://pt.wikipedia.org/wiki/Futev%C3%B4lei" target="_blank" rel="noopener noreferrer" class="link-externo">
+                    Conheça a história do futevôlei
+                </a>
+            </p>
+        </section>
+
+        <!-- ===== FORMULÁRIO DE CONTATO ===== -->
+        <section id="contato">
+            <h2>Fale Conosco</h2>
+            <form>
+                <div class="campo-formulario">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(83) 90000-0000">
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="assunto">Assunto</label>
+                    <input type="text" id="assunto" name="assunto" placeholder="Sobre o que você quer falar?">
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <h2>FuteVibe</h2>
+        <p>Sua loja especializada em artigos de futevôlei</p>
+        <p>Av. Beira Mar, 1234 - João Pessoa, PB</p>
+        <p>Telefone: (83) 90000-0000 | E-mail: contato@futevibe.com.br</p>
+        <div class="redes-sociais">
+            <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+        <p class="copyright">&copy; 2026 FuteVibe. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
