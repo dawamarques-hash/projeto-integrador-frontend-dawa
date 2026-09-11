@@ -552,6 +552,36 @@
             </div>
         </section>
 
+<!-- ===== SEÇÃO DE MÍDIA: VÍDEO DE DEMONSTRAÇÃO ===== -->
+<section id="video-demonstracao">
+    <h2>Veja o Futevôlei em Ação</h2>
+    <p style="text-align:center; margin-bottom: 1.5rem;">
+        Confira como é a prática do futevôlei — o esporte que inspira todos os nossos produtos.
+    </p>
+
+    <!--
+        Escolhemos preload="metadata" porque este vídeo não é reproduzido
+        automaticamente (não usamos "autoplay"): ele só carrega de fato quando
+        o usuário clica em "play". Com "metadata", o navegador baixa só
+        informações básicas (duração, dimensões) e exibe o poster imediatamente,
+        sem gastar dados do usuário baixando o vídeo inteiro à toa. Isso é
+        melhor do que preload="none" (que atrasaria um pouco o início da
+        reprodução) e muito mais leve do que preload="auto" (que baixaria o
+        vídeo inteiro mesmo que o visitante nunca clique em play).
+    -->
+    <video
+        controls
+        preload="metadata"
+        poster="assets/images/poster-demonstracao-futevolei.png"
+        width="920"
+        height="720">
+        <source src="assets/videos/demonstracao-futevolei.mp4" type="video/mp4">
+        <source src="assets/videos/demonstracao-futevolei.webm" type="video/webm">
+        Seu navegador não suporta a reprodução de vídeo HTML5.
+        Você pode <a href="assets/videos/demonstracao-futevolei.mp4">baixar o vídeo aqui</a>.
+    </video>
+</section>
+
         <!-- ===== TABELA DE PRODUTOS ===== -->
         <section id="tabela-produtos">
             <h2>Tabela de Produtos</h2>
@@ -572,7 +602,7 @@
                     <tr>
                         <td>Rede de Futevôlei Profissional</td>
                         <td>Redes</td>
-                        <td>R$ 389,90</td>
+                        <td>R$ 898,90</td>
                     </tr>
                     <tr>
                         <td>Camisa Esportiva Dry-Fit</td>
