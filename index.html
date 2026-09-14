@@ -48,6 +48,16 @@
             margin: 0 auto;
         }
 
+        .logo-loja {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .icone-bola {
+            flex-shrink: 0;
+        }
+
         .logo-loja .logo-nome {
             font-size: 1.8rem;
             font-weight: bold;
@@ -240,6 +250,20 @@
             background-color: #f1f9fc;
         }
 
+        /* ===== ESTATÍSTICAS (CANVAS) ===== */
+        .container-grafico {
+            display: flex;
+            justify-content: center;
+        }
+
+        #grafico-categorias {
+            max-width: 100%;
+            height: auto;
+            background-color: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
         /* ===== SOBRE NÓS / BENEFÍCIOS ===== */
         .lista-beneficios {
             list-style: none;
@@ -374,14 +398,33 @@
     <header>
         <div class="header-conteudo">
             <div class="logo-loja">
-                <p class="logo-nome">FuteVibe</p>
-                <p class="tagline">Tudo para você jogar futevôlei com estilo</p>
+                <!--
+                    Ícone SVG inline (não é <img>): usa viewBox em vez de
+                    dimensões fixas, então permanece nítido em qualquer
+                    tamanho de tela. Testado redimensionando a janela do
+                    navegador de 1920px até 360px de largura — o ícone não
+                    perde qualidade nem pixeliza, diferente de um PNG/JPG
+                    ampliado. role="img" + <title> dão um nome acessível
+                    para leitores de tela.
+                -->
+                <svg class="icone-bola" viewBox="0 0 24 24" width="32" height="32"
+                     role="img" aria-labelledby="titulo-icone-bola">
+                    <title id="titulo-icone-bola">Bola de futevôlei</title>
+                    <circle cx="12" cy="12" r="10" fill="#ffffff" stroke="#023e8a" stroke-width="1.5"/>
+                    <path d="M12 4 L14.5 9 L20 9.5 L15.5 13 L17 19 L12 15.5 L7 19 L8.5 13 L4 9.5 L9.5 9 Z"
+                          fill="#ff6d00"/>
+                </svg>
+                <div>
+                    <p class="logo-nome">FuteVibe</p>
+                    <p class="tagline">Tudo para você jogar futevôlei com estilo</p>
+                </div>
             </div>
             <nav>
                 <ul>
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#produtos">Produtos</a></li>
                     <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#estatisticas">Estatísticas</a></li>
                     <li><a href="#avaliacao">Avaliar</a></li>
                     <li><a href="#sobre">Sobre nós</a></li>
                     <li><a href="#contato">Contato</a></li>
@@ -552,35 +595,35 @@
             </div>
         </section>
 
-<!-- ===== SEÇÃO DE MÍDIA: VÍDEO DE DEMONSTRAÇÃO ===== -->
-<section id="video-demonstracao">
-    <h2>Veja o Futevôlei em Ação</h2>
-    <p style="text-align:center; margin-bottom: 1.5rem;">
-        Confira como é a prática do futevôlei — o esporte que inspira todos os nossos produtos.
-    </p>
+        <!-- ===== SEÇÃO DE MÍDIA: VÍDEO DE DEMONSTRAÇÃO ===== -->
+        <section id="video-demonstracao">
+            <h2>Veja o Futevôlei em Ação</h2>
+            <p style="text-align:center; margin-bottom: 1.5rem;">
+                Confira como é a prática do futevôlei — o esporte que inspira todos os nossos produtos.
+            </p>
 
-    <!--
-        Escolhemos preload="metadata" porque este vídeo não é reproduzido
-        automaticamente (não usamos "autoplay"): ele só carrega de fato quando
-        o usuário clica em "play". Com "metadata", o navegador baixa só
-        informações básicas (duração, dimensões) e exibe o poster imediatamente,
-        sem gastar dados do usuário baixando o vídeo inteiro à toa. Isso é
-        melhor do que preload="none" (que atrasaria um pouco o início da
-        reprodução) e muito mais leve do que preload="auto" (que baixaria o
-        vídeo inteiro mesmo que o visitante nunca clique em play).
-    -->
-    <video
-        controls
-        preload="metadata"
-        poster="assets/images/poster-demonstracao-futevolei.png"
-        width="920"
-        height="720">
-        <source src="assets/videos/demonstracao-futevolei.mp4" type="video/mp4">
-        <source src="assets/videos/demonstracao-futevolei.webm" type="video/webm">
-        Seu navegador não suporta a reprodução de vídeo HTML5.
-        Você pode <a href="assets/videos/demonstracao-futevolei.mp4">baixar o vídeo aqui</a>.
-    </video>
-</section>
+            <!--
+                Escolhemos preload="metadata" porque este vídeo não é reproduzido
+                automaticamente (não usamos "autoplay"): ele só carrega de fato quando
+                o usuário clica em "play". Com "metadata", o navegador baixa só
+                informações básicas (duração, dimensões) e exibe o poster imediatamente,
+                sem gastar dados do usuário baixando o vídeo inteiro à toa. Isso é
+                melhor do que preload="none" (que atrasaria um pouco o início da
+                reprodução) e muito mais leve do que preload="auto" (que baixaria o
+                vídeo inteiro mesmo que o visitante nunca clique em play).
+            -->
+            <video
+                controls
+                preload="metadata"
+                poster="assets/images/poster-demonstracao-futevolei.png"
+                width="920"
+                height="720">
+                <source src="assets/videos/demonstracao-futevolei.mp4" type="video/mp4">
+                <source src="assets/videos/demonstracao-futevolei.webm" type="video/webm">
+                Seu navegador não suporta a reprodução de vídeo HTML5.
+                Você pode <a href="assets/videos/demonstracao-futevolei.mp4">baixar o vídeo aqui</a>.
+            </video>
+        </section>
 
         <!-- ===== TABELA DE PRODUTOS ===== -->
         <section id="tabela-produtos">
@@ -621,6 +664,23 @@
                     </tr>
                 </tbody>
             </table>
+        </section>
+
+        <!-- ===== ESTATÍSTICAS: GRÁFICO EM CANVAS ===== -->
+        <section id="estatisticas">
+            <h2>Produtos por Categoria</h2>
+            <p style="text-align:center; margin-bottom: 1.5rem;">
+                Veja como nosso catálogo de 12 produtos está distribuído entre as categorias.
+            </p>
+            <div class="container-grafico">
+                <canvas id="grafico-categorias" width="600" height="300"
+                        role="img" aria-label="Gráfico de barras da quantidade de produtos por categoria">
+                    Este gráfico mostra a quantidade de produtos por categoria:
+                    1 Bola de Futevôlei, 1 Rede, 2 Roupas Esportivas, 1 Kit
+                    Iniciante e 7 Acessórios, totalizando 12 produtos.
+                    Seu navegador não suporta o elemento canvas.
+                </canvas>
+            </div>
         </section>
 
         <!-- ===== NOVA SEÇÃO: AVALIAÇÃO DE PRODUTOS ===== -->
@@ -753,6 +813,86 @@
         </div>
         <p class="copyright">&copy; 2026 FuteVibe. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- ===== SCRIPT: GRÁFICO ANIMADO EM CANVAS ===== -->
+    <script>
+        const canvas = document.getElementById('grafico-categorias');
+
+        // Só executa o desenho se o navegador realmente suportar canvas.
+        // Se não suportar, o conteúdo de fallback (o texto dentro do <canvas>) fica visível.
+        if (canvas.getContext) {
+            const ctx = canvas.getContext('2d');
+
+            const dados = [
+                { categoria: 'Bolas',       valor: 1, cor: '#0077b6' },
+                { categoria: 'Redes',       valor: 1, cor: '#00b4d8' },
+                { categoria: 'Roupas',      valor: 2, cor: '#ff6d00' },
+                { categoria: 'Kits',        valor: 1, cor: '#023e8a' },
+                { categoria: 'Acessórios',  valor: 7, cor: '#90e0ef' }
+            ];
+
+            const larguraBarra = 80;
+            const espacamento = 30;
+            const alturaMaxima = 220;
+            const baseY = 260;
+            const valorMaximo = Math.max(...dados.map(item => item.valor));
+
+            let progresso = 0;
+            let frameAtual = 0;
+            const duracaoFrames = 60; // ~1 segundo a 60fps
+
+            function desenharGrafico() {
+                // Limpa o canvas inteiro antes de redesenhar.
+                // Sem isso, cada frame desenharia por cima do anterior,
+                // criando um "rastro" nas barras (o Erro 2 da teoria).
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Eixo horizontal
+                ctx.strokeStyle = '#2c3e50';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(40, baseY);
+                ctx.lineTo(canvas.width - 20, baseY);
+                ctx.stroke();
+
+                dados.forEach((item, indice) => {
+                    const x = 60 + indice * (larguraBarra + espacamento);
+                    const alturaFinal = (item.valor / valorMaximo) * alturaMaxima;
+                    const alturaAtual = alturaFinal * progresso;
+
+                    // Barra
+                    ctx.fillStyle = item.cor;
+                    ctx.fillRect(x, baseY - alturaAtual, larguraBarra, alturaAtual);
+
+                    // Nome da categoria (abaixo do eixo)
+                    ctx.fillStyle = '#2c3e50';
+                    ctx.font = '14px Segoe UI, Arial, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(item.categoria, x + larguraBarra / 2, baseY + 20);
+
+                    // Valor (acima da barra)
+                    ctx.font = 'bold 14px Segoe UI, Arial, sans-serif';
+                    ctx.fillText(item.valor, x + larguraBarra / 2, baseY - alturaAtual - 8);
+                });
+            }
+
+            function animar() {
+                frameAtual++;
+                progresso = Math.min(frameAtual / duracaoFrames, 1);
+                desenharGrafico();
+
+                // Só pede o próximo frame enquanto a animação não terminou.
+                // Parar de chamar requestAnimationFrame quando progresso
+                // chega a 1 evita loop infinito desnecessário (o outro
+                // lado do Erro 2: nunca parar de re-agendar frames).
+                if (progresso < 1) {
+                    requestAnimationFrame(animar);
+                }
+            }
+
+            animar();
+        }
+    </script>
 
 </body>
 </html>
