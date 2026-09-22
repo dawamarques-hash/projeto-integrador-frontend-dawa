@@ -68,6 +68,7 @@
             opacity: 0.9;
         }
 
+        /* ===== NAVEGAÇÃO (Flexbox) ===== */
         nav ul {
             list-style: none;
             display: flex;
@@ -79,11 +80,23 @@
             font-weight: bold;
             padding: 0.4rem 0.6rem;
             border-radius: 6px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
+        /* Estado :hover para mouse */
         nav a:hover {
             background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Estado :focus-visible para navegação via teclado (Tab).
+           Diferente de :focus, :focus-visible só aparece quando o
+           navegador entende que o usuário está navegando por teclado,
+           evitando o contorno aparecer em cliques de mouse. */
+        nav a:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: 2px;
+            background-color: rgba(255,255,255,0.25);
         }
 
         /* ===== SEÇÃO INÍCIO ===== */
@@ -123,9 +136,19 @@
             transition: transform 0.2s ease, background 0.3s ease;
         }
 
+        /* Usamos transform: translateY() em vez de animar height/margin-top
+           para simular o "levantar" do botão. Animar transform roda na GPU
+           (compositing) e não força o navegador a recalcular layout/paint
+           dos elementos vizinhos a cada frame — diferente de animar
+           width/height, que disparam reflow e são mais custosos. */
         .botao-cta:hover {
             background-color: #e65c00;
             transform: translateY(-3px);
+        }
+
+        .botao-cta:focus-visible {
+            outline: 3px solid #023e8a;
+            outline-offset: 3px;
         }
 
         /* ===== SEÇÕES GERAIS ===== */
@@ -142,7 +165,7 @@
             text-align: center;
         }
 
-        /* ===== CATEGORIAS ===== */
+        /* ===== CATEGORIAS (Grid) ===== */
         .lista-categorias {
             list-style: none;
             display: grid;
@@ -151,20 +174,56 @@
         }
 
         .lista-categorias li {
+            /* O <li> agora só posiciona o botão dentro da grade;
+               a aparência visual (fundo, sombra, padding) vive em
+               .botao-categoria, que é o elemento realmente interativo. */
+            list-style: none;
+        }
+
+        /* Botão de filtro de categoria */
+        .botao-categoria {
+            width: 100%;
             background-color: #ffffff;
+            border: 2px solid transparent;
             padding: 1.5rem;
             border-radius: 12px;
             text-align: center;
             font-weight: bold;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #2c3e50;
+            cursor: pointer;
             box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        .lista-categorias li:hover {
+        /* Mesmo raciocínio do .botao-cta: o "levantar" do card usa
+           transform (composta na GPU), nunca height/width, que forçariam
+           reflow de toda a grade a cada frame da transição. */
+        .botao-categoria:hover {
             transform: translateY(-5px);
         }
 
-        /* ===== CATÁLOGO DE PRODUTOS ===== */
+        .botao-categoria:focus-visible {
+            outline: 3px solid #023e8a;
+            outline-offset: 2px;
+        }
+
+        /* Estado ativo: categoria atualmente selecionada como filtro */
+        .botao-categoria.is-ativo {
+            background-color: #0077b6;
+            border-color: #023e8a;
+            color: #ffffff;
+        }
+
+        /* Pseudo-classe estrutural: destaca visualmente o primeiro botão
+           ("Todos") como a opção padrão/carro-chefe da lista, sem
+           precisar adicionar uma classe extra no HTML. */
+        .lista-categorias li:first-child .botao-categoria {
+            border-color: #ff6d00;
+        }
+
+        /* ===== CATÁLOGO DE PRODUTOS (Grid responsivo, sem media query) ===== */
         .grid-produtos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -179,8 +238,24 @@
             transition: transform 0.2s ease;
         }
 
+        /* Novamente transform (translateY) em vez de height/width para o
+           efeito de "flutuar" o card do produto ao passar o mouse — evita
+           reflow da grade inteira durante a animação. */
         article.produto:hover {
             transform: translateY(-6px);
+        }
+
+        /* Pseudo-classe estrutural :nth-child(even): alterna um leve tom de
+           fundo entre os cards de produto para facilitar a leitura visual
+           da grade, sem precisar de classes "par/ímpar" no HTML. */
+        article.produto:nth-child(even) {
+            background-color: #f7fbfd;
+        }
+
+        /* :last-child: dá um destaque sutil ao último produto listado no
+           catálogo (ex.: o mais recente adicionado). */
+        article.produto:last-child {
+            box-shadow: 0 4px 14px rgba(255, 109, 0, 0.35);
         }
 
         article.produto img {
@@ -224,6 +299,11 @@
 
         .botao-comprar:hover {
             background-color: #023e8a;
+        }
+
+        .botao-comprar:focus-visible {
+            outline: 3px solid #023e8a;
+            outline-offset: 2px;
         }
 
         /* ===== TABELA ===== */
@@ -286,6 +366,11 @@
             font-weight: bold;
             color: #0077b6;
             border-bottom: 2px solid #0077b6;
+        }
+
+        .link-externo:focus-visible {
+            outline: 3px solid #0077b6;
+            outline-offset: 3px;
         }
 
         /* ===== FORMULÁRIOS (CONTATO E AVALIAÇÃO) ===== */
@@ -356,6 +441,11 @@
             background-color: #e65c00;
         }
 
+        button[type="submit"]:focus-visible {
+            outline: 3px solid #023e8a;
+            outline-offset: 2px;
+        }
+
         /* ===== RODAPÉ ===== */
         footer {
             background-color: #023e8a;
@@ -386,6 +476,11 @@
             border-bottom: 1px solid #ffffff;
         }
 
+        .redes-sociais a:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 3px;
+        }
+
         .copyright {
             margin-top: 1rem;
             font-size: 0.8rem;
@@ -398,15 +493,6 @@
     <header>
         <div class="header-conteudo">
             <div class="logo-loja">
-                <!--
-                    Ícone SVG inline (não é <img>): usa viewBox em vez de
-                    dimensões fixas, então permanece nítido em qualquer
-                    tamanho de tela. Testado redimensionando a janela do
-                    navegador de 1920px até 360px de largura — o ícone não
-                    perde qualidade nem pixeliza, diferente de um PNG/JPG
-                    ampliado. role="img" + <title> dão um nome acessível
-                    para leitores de tela.
-                -->
                 <svg class="icone-bola" viewBox="0 0 24 24" width="32" height="32"
                      role="img" aria-labelledby="titulo-icone-bola">
                     <title id="titulo-icone-bola">Bola de futevôlei</title>
@@ -435,7 +521,6 @@
 
     <main>
 
-        <!-- ===== SEÇÃO INÍCIO ===== -->
         <section id="inicio">
             <h1>FuteVibe - Loja de Artigos de Futevôlei</h1>
             <p>Somos uma loja especializada em produtos para quem vive o futevôlei: bolas, redes, roupas esportivas e acessórios pensados para o seu melhor desempenho na areia.</p>
@@ -443,24 +528,60 @@
             <a href="#produtos" class="botao-cta">Ver produtos</a>
         </section>
 
-        <!-- ===== CATEGORIAS ===== -->
         <section id="categorias">
             <h2>Categorias</h2>
-            <ul class="lista-categorias">
-                <li>Bolas de Futevôlei</li>
-                <li>Roupas Esportivas</li>
-                <li>Redes</li>
-                <li>Acessórios</li>
-                <li>Kits de Futevôlei</li>
+            <p style="text-align:center; margin-bottom: 1.5rem;">
+                Clique em uma categoria para filtrar os produtos abaixo.
+            </p>
+            <!--
+                Usamos <button> em vez de <li> simples: botão já é focável,
+                clicável e ativável por teclado (Enter/Espaço) nativamente,
+                sem precisar de tabindex ou de reimplementar o comportamento
+                de clique. aria-pressed indica ao leitor de tela qual filtro
+                está ativo no momento.
+            -->
+            <ul class="lista-categorias" id="filtro-categorias">
+                <li>
+                    <button type="button" class="botao-categoria is-ativo" data-categoria="todos" aria-pressed="true">
+                        Todos
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="botao-categoria" data-categoria="Bolas de Futevôlei" aria-pressed="false">
+                        Bolas de Futevôlei
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="botao-categoria" data-categoria="Roupas Esportivas" aria-pressed="false">
+                        Roupas Esportivas
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="botao-categoria" data-categoria="Redes" aria-pressed="false">
+                        Redes
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="botao-categoria" data-categoria="Acessórios" aria-pressed="false">
+                        Acessórios
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="botao-categoria" data-categoria="Kits de Futevôlei" aria-pressed="false">
+                        Kits de Futevôlei
+                    </button>
+                </li>
             </ul>
+            <p id="mensagem-filtro-vazio" hidden style="text-align:center; margin-top: 1.5rem; color: #6c757d;">
+                Nenhum produto encontrado nesta categoria.
+            </p>
         </section>
 
-        <!-- ===== CATÁLOGO DE PRODUTOS ===== -->
         <section id="produtos">
             <h2>Nossos Produtos</h2>
             <div class="grid-produtos">
 
-                <article class="produto">
+                <article class="produto" data-categoria="Bolas de Futevôlei">
                     <img src="assets/images/bola-futevolei.png" alt="Bola oficial para prática de futevôlei">
                     <div class="info-produto">
                         <h3>Bola de Futevôlei Oficial</h3>
@@ -471,7 +592,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Redes">
                     <img src="assets/images/rede-futevolei.png" alt="Rede oficial de futevôlei com suportes">
                     <div class="info-produto">
                         <h3>Rede de Futevôlei Profissional</h3>
@@ -482,7 +603,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Roupas Esportivas">
                     <img src="assets/images/camisa-futevolei.png" alt="Camisa esportiva dry-fit para futevôlei">
                     <div class="info-produto">
                         <h3>Camisa Esportiva Dry-Fit</h3>
@@ -493,7 +614,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Roupas Esportivas">
                     <img src="assets/images/shorts-futevolei.png" alt="Shorts esportivo masculino para futevôlei">
                     <div class="info-produto">
                         <h3>Shorts Esportivo Masculino</h3>
@@ -504,7 +625,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Acessórios">
                     <img src="assets/images/oculos-futevolei.png" alt="Óculos de sol esportivo para praia">
                     <div class="info-produto">
                         <h3>Óculos de Sol Esportivo</h3>
@@ -515,7 +636,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Acessórios">
                     <img src="assets/images/bone-futevolei.png" alt="Boné esportivo para prática de futevôlei">
                     <div class="info-produto">
                         <h3>Boné Esportivo</h3>
@@ -526,7 +647,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Kits de Futevôlei">
                     <img src="assets/images/kit-futevolei.png" alt="Kit iniciante completo de futevôlei">
                     <div class="info-produto">
                         <h3>Kit Iniciante Futevôlei</h3>
@@ -537,7 +658,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Acessórios">
                     <img src="assets/images/tornozeleira-futevolei.png" alt="Tornozeleira de proteção esportiva">
                     <div class="info-produto">
                         <h3>Tornozeleira de Proteção</h3>
@@ -548,7 +669,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Acessórios">
                     <img src="assets/images/luva-futevolei.png" alt="Luvas de treino para futevôlei">
                     <div class="info-produto">
                         <h3>Luvas para Treino</h3>
@@ -559,7 +680,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Acessórios">
                     <img src="assets/images/mochila-futevolei.png" alt="Mochila esportiva para levar equipamentos de futevôlei">
                     <div class="info-produto">
                         <h3>Mochila Esportiva</h3>
@@ -570,7 +691,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Acessórios">
                     <img src="assets/images/garrafa-futevolei.png" alt="Garrafa térmica esportiva para hidratação">
                     <div class="info-produto">
                         <h3>Garrafa Térmica Esportiva</h3>
@@ -581,7 +702,7 @@
                     </div>
                 </article>
 
-                <article class="produto">
+                <article class="produto" data-categoria="Acessórios">
                     <img src="assets/images/toalha-futevolei.png" alt="Toalha esportiva de praia para futevôlei">
                     <div class="info-produto">
                         <h3>Toalha Esportiva de Praia</h3>
@@ -595,23 +716,11 @@
             </div>
         </section>
 
-        <!-- ===== SEÇÃO DE MÍDIA: VÍDEO DE DEMONSTRAÇÃO ===== -->
         <section id="video-demonstracao">
             <h2>Veja o Futevôlei em Ação</h2>
             <p style="text-align:center; margin-bottom: 1.5rem;">
                 Confira como é a prática do futevôlei — o esporte que inspira todos os nossos produtos.
             </p>
-
-            <!--
-                Escolhemos preload="metadata" porque este vídeo não é reproduzido
-                automaticamente (não usamos "autoplay"): ele só carrega de fato quando
-                o usuário clica em "play". Com "metadata", o navegador baixa só
-                informações básicas (duração, dimensões) e exibe o poster imediatamente,
-                sem gastar dados do usuário baixando o vídeo inteiro à toa. Isso é
-                melhor do que preload="none" (que atrasaria um pouco o início da
-                reprodução) e muito mais leve do que preload="auto" (que baixaria o
-                vídeo inteiro mesmo que o visitante nunca clique em play).
-            -->
             <video
                 controls
                 preload="metadata"
@@ -625,7 +734,6 @@
             </video>
         </section>
 
-        <!-- ===== TABELA DE PRODUTOS ===== -->
         <section id="tabela-produtos">
             <h2>Tabela de Produtos</h2>
             <table>
@@ -666,7 +774,6 @@
             </table>
         </section>
 
-        <!-- ===== ESTATÍSTICAS: GRÁFICO EM CANVAS ===== -->
         <section id="estatisticas">
             <h2>Produtos por Categoria</h2>
             <p style="text-align:center; margin-bottom: 1.5rem;">
@@ -683,7 +790,6 @@
             </div>
         </section>
 
-        <!-- ===== NOVA SEÇÃO: AVALIAÇÃO DE PRODUTOS ===== -->
         <section id="avaliacao">
             <h2>Avalie seu Produto</h2>
             <p style="text-align:center; margin-bottom: 1.5rem;">Já comprou com a gente? Conte pra nós o que achou do produto!</p>
@@ -732,7 +838,6 @@
             </form>
         </section>
 
-        <!-- ===== SOBRE NÓS ===== -->
         <section id="sobre">
             <h2>Sobre Nós</h2>
             <p>A FuteVibe nasceu da paixão pelo futevôlei e pelo estilo de vida da praia. Somos uma loja especializada em equipamentos e vestuário esportivo voltados para quem pratica esse esporte de forma recreativa ou competitiva.</p>
@@ -741,7 +846,6 @@
             <p>Trabalhamos com compromisso de qualidade, selecionando cuidadosamente cada produto para garantir a melhor experiência dentro e fora da quadra.</p>
         </section>
 
-        <!-- ===== BENEFÍCIOS ===== -->
         <section id="beneficios">
             <h2>Por que escolher a FuteVibe</h2>
             <ul class="lista-beneficios">
@@ -752,12 +856,6 @@
                 <li>Envio para todo o Brasil</li>
             </ul>
 
-            <!--
-                Os atributos abaixo são utilizados por segurança e desempenho:
-                target="_blank" abre o link em uma nova aba, sem fechar o site da loja.
-                rel="noopener noreferrer" impede que a página aberta tenha acesso à
-                janela original (noopener) e evita o envio de dados do referenciador (noreferrer).
-            -->
             <p style="text-align:center; margin-top: 1.5rem;">
                 Quer saber mais sobre o esporte?
                 <a href="https://pt.wikipedia.org/wiki/Futev%C3%B4lei" target="_blank" rel="noopener noreferrer" class="link-externo">
@@ -766,7 +864,6 @@
             </p>
         </section>
 
-        <!-- ===== FORMULÁRIO DE CONTATO ===== -->
         <section id="contato">
             <h2>Fale Conosco</h2>
             <form>
@@ -814,12 +911,9 @@
         <p class="copyright">&copy; 2026 FuteVibe. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- ===== SCRIPT: GRÁFICO ANIMADO EM CANVAS ===== -->
     <script>
         const canvas = document.getElementById('grafico-categorias');
 
-        // Só executa o desenho se o navegador realmente suportar canvas.
-        // Se não suportar, o conteúdo de fallback (o texto dentro do <canvas>) fica visível.
         if (canvas.getContext) {
             const ctx = canvas.getContext('2d');
 
@@ -839,15 +933,11 @@
 
             let progresso = 0;
             let frameAtual = 0;
-            const duracaoFrames = 60; // ~1 segundo a 60fps
+            const duracaoFrames = 60;
 
             function desenharGrafico() {
-                // Limpa o canvas inteiro antes de redesenhar.
-                // Sem isso, cada frame desenharia por cima do anterior,
-                // criando um "rastro" nas barras (o Erro 2 da teoria).
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                // Eixo horizontal
                 ctx.strokeStyle = '#2c3e50';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -860,17 +950,14 @@
                     const alturaFinal = (item.valor / valorMaximo) * alturaMaxima;
                     const alturaAtual = alturaFinal * progresso;
 
-                    // Barra
                     ctx.fillStyle = item.cor;
                     ctx.fillRect(x, baseY - alturaAtual, larguraBarra, alturaAtual);
 
-                    // Nome da categoria (abaixo do eixo)
                     ctx.fillStyle = '#2c3e50';
                     ctx.font = '14px Segoe UI, Arial, sans-serif';
                     ctx.textAlign = 'center';
                     ctx.fillText(item.categoria, x + larguraBarra / 2, baseY + 20);
 
-                    // Valor (acima da barra)
                     ctx.font = 'bold 14px Segoe UI, Arial, sans-serif';
                     ctx.fillText(item.valor, x + larguraBarra / 2, baseY - alturaAtual - 8);
                 });
@@ -881,10 +968,6 @@
                 progresso = Math.min(frameAtual / duracaoFrames, 1);
                 desenharGrafico();
 
-                // Só pede o próximo frame enquanto a animação não terminou.
-                // Parar de chamar requestAnimationFrame quando progresso
-                // chega a 1 evita loop infinito desnecessário (o outro
-                // lado do Erro 2: nunca parar de re-agendar frames).
                 if (progresso < 1) {
                     requestAnimationFrame(animar);
                 }
@@ -892,6 +975,49 @@
 
             animar();
         }
+    </script>
+
+    <!-- ===== SCRIPT: FILTRO INTERATIVO DE CATEGORIAS ===== -->
+    <script>
+        const botoesCategoria = document.querySelectorAll('.botao-categoria');
+        const produtos = document.querySelectorAll('#produtos article.produto');
+        const mensagemVazio = document.getElementById('mensagem-filtro-vazio');
+
+        function filtrarPorCategoria(categoriaEscolhida) {
+            let algumVisivel = false;
+
+            produtos.forEach((produto) => {
+                const categoriaDoProduto = produto.dataset.categoria;
+                const deveExibir = categoriaEscolhida === 'todos' || categoriaDoProduto === categoriaEscolhida;
+
+                produto.hidden = !deveExibir;
+                if (deveExibir) algumVisivel = true;
+            });
+
+            // Mostra um aviso amigável em vez de deixar a grade "vazia"
+            // silenciosamente, caso alguma categoria não tenha produtos.
+            mensagemVazio.hidden = algumVisivel;
+        }
+
+        botoesCategoria.forEach((botao) => {
+            botao.addEventListener('click', () => {
+                // Atualiza o estado visual e o aria-pressed de todos os
+                // botões, garantindo que só um fique marcado como ativo
+                // por vez (útil para leitores de tela e para CSS).
+                botoesCategoria.forEach((b) => {
+                    b.classList.remove('is-ativo');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                botao.classList.add('is-ativo');
+                botao.setAttribute('aria-pressed', 'true');
+
+                filtrarPorCategoria(botao.dataset.categoria);
+
+                // Leva o usuário até o catálogo, já filtrado, sem precisar
+                // rolar manualmente até a seção de produtos.
+                document.getElementById('produtos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
     </script>
 
 </body>
