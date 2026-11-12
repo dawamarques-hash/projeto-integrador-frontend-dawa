@@ -446,6 +446,57 @@
             outline-offset: 2px;
         }
 
+        /* ===== OFERTAS (JS: funções + DOM) ===== */
+        #lista-ofertas {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .oferta-item {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            border-top: 6px solid #ccc;
+        }
+
+        .oferta-item h3 { font-size: 1.05rem; color: #023e8a; margin-bottom: 0.3rem; }
+        .oferta-categoria { font-size: 0.85rem; color: #6c757d; margin-bottom: 0.5rem; }
+        .oferta-precos { margin-bottom: 0.7rem; }
+        .preco-original { text-decoration: line-through; color: #6c757d; font-size: 0.9rem; }
+        .preco-final { color: #ff6d00; font-size: 1.15rem; }
+
+        .selo-faixa {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Uma classe por faixa: o JS aplica, o CSS decide a aparência */
+        .faixa-economico    { border-top-color: #2a9d8f; }
+        .faixa-economico .selo-faixa    { background-color: #2a9d8f; }
+        .faixa-intermediario { border-top-color: #0077b6; }
+        .faixa-intermediario .selo-faixa { background-color: #0077b6; }
+        .faixa-premium      { border-top-color: #ff6d00; }
+        .faixa-premium .selo-faixa      { background-color: #ff6d00; }
+        .faixa-profissional { border-top-color: #023e8a; }
+        .faixa-profissional .selo-faixa { background-color: #023e8a; }
+
+        #resumo-ofertas {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            color: #023e8a;
+            background-color: #caf0f8;
+            border-radius: 10px;
+        }
+
         /* ===== RODAPÉ ===== */
         footer {
             background-color: #023e8a;
@@ -510,6 +561,7 @@
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#produtos">Produtos</a></li>
                     <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#ofertas">Ofertas</a></li>
                     <li><a href="#estatisticas">Estatísticas</a></li>
                     <li><a href="#avaliacao">Avaliar</a></li>
                     <li><a href="#sobre">Sobre nós</a></li>
@@ -714,6 +766,15 @@
                 </article>
 
             </div>
+        </section>
+
+                <section id="ofertas">
+            <h2>Ofertas da Semana</h2>
+            <p style="text-align:center; margin-bottom: 1.5rem;">
+                Produtos em promoção, do mais barato ao mais caro (preço já com desconto).
+            </p>
+            <ul id="lista-ofertas"></ul>
+            <p id="resumo-ofertas" aria-live="polite"></p>
         </section>
 
         <section id="video-demonstracao">
@@ -1019,6 +1080,8 @@
             });
         });
     </script>
+
+    <script src="js/script.js" defer></script>
 
 </body>
 </html>
