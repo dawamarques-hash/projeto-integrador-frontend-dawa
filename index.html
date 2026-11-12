@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuteVibe - Loja de Artigos de Futevôlei</title>
     <meta name="description" content="FuteVibe é uma loja especializada em artigos de futevôlei: bolas, redes, roupas esportivas e acessórios para praticantes do esporte.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,9 +18,9 @@
                 <svg class="icone-bola" viewBox="0 0 24 24" width="32" height="32"
                      role="img" aria-labelledby="titulo-icone-bola">
                     <title id="titulo-icone-bola">Bola de futevôlei</title>
-                    <circle cx="12" cy="12" r="10" fill="#ffffff" stroke="#023e8a" stroke-width="1.5"/>
+                    <circle cx="12" cy="12" r="10" fill="#ffffff" stroke="#0a2540" stroke-width="1.5"/>
                     <path d="M12 4 L14.5 9 L20 9.5 L15.5 13 L17 19 L12 15.5 L7 19 L8.5 13 L4 9.5 L9.5 9 Z"
-                          fill="#ff6d00"/>
+                          fill="#ffb703"/>
                 </svg>
                 <div>
                     <p class="logo-nome">FuteVibe</p>
@@ -63,7 +66,7 @@
 
         <section id="categorias">
             <h2>Categorias</h2>
-            <p style="text-align:center; margin-bottom: 1.5rem;">
+            <p>
                 Clique em uma categoria para filtrar os produtos abaixo.
             </p>
             <!--
@@ -105,7 +108,7 @@
                     </button>
                 </li>
             </ul>
-            <p id="mensagem-filtro-vazio" hidden style="text-align:center; margin-top: 1.5rem; color: #6c757d;">
+            <p id="mensagem-filtro-vazio" hidden style="margin-top: 1.5rem; color: #5b6b76;">
                 Nenhum produto encontrado nesta categoria.
             </p>
         </section>
@@ -275,7 +278,7 @@
 
                 <section id="ofertas">
             <h2>Ofertas da Semana</h2>
-            <p style="text-align:center; margin-bottom: 1.5rem;">
+            <p>
                 Produtos em promoção, do mais barato ao mais caro (preço já com desconto).
             </p>
             <ul id="lista-ofertas"></ul>
@@ -284,7 +287,7 @@
 
         <section id="video-demonstracao">
             <h2>Veja o Futevôlei em Ação</h2>
-            <p style="text-align:center; margin-bottom: 1.5rem;">
+            <p>
                 Confira como é a prática do futevôlei — o esporte que inspira todos os nossos produtos.
             </p>
             <video
@@ -342,7 +345,7 @@
 
         <section id="estatisticas">
             <h2>Produtos por Categoria</h2>
-            <p style="text-align:center; margin-bottom: 1.5rem;">
+            <p>
                 Veja como nosso catálogo de 12 produtos está distribuído entre as categorias.
             </p>
             <div class="container-grafico">
@@ -358,7 +361,7 @@
 
         <section id="avaliacao">
             <h2>Avalie seu Produto</h2>
-            <p style="text-align:center; margin-bottom: 1.5rem;">Já comprou com a gente? Conte pra nós o que achou do produto!</p>
+            <p>Já comprou com a gente? Conte pra nós o que achou do produto!</p>
             <form>
                 <fieldset>
                     <legend>Seus dados</legend>
@@ -422,7 +425,7 @@
                 <li>Envio para todo o Brasil</li>
             </ul>
 
-            <p style="text-align:center; margin-top: 1.5rem;">
+            <p style="margin-top: 1.5rem;">
                 Quer saber mais sobre o esporte?
                 <a href="https://pt.wikipedia.org/wiki/Futev%C3%B4lei" target="_blank" rel="noopener noreferrer" class="link-externo">
                     Conheça a história do futevôlei
@@ -484,11 +487,11 @@
             const ctx = canvas.getContext('2d');
 
             const dados = [
-                { categoria: 'Bolas',       valor: 1, cor: '#0077b6' },
-                { categoria: 'Redes',       valor: 1, cor: '#00b4d8' },
-                { categoria: 'Roupas',      valor: 2, cor: '#ff6d00' },
-                { categoria: 'Kits',        valor: 1, cor: '#023e8a' },
-                { categoria: 'Acessórios',  valor: 7, cor: '#90e0ef' }
+                { categoria: 'Bolas',       valor: 1, cor: '#0e7c86' },
+                { categoria: 'Redes',       valor: 1, cor: '#5bc0be' },
+                { categoria: 'Roupas',      valor: 2, cor: '#ffb703' },
+                { categoria: 'Kits',        valor: 1, cor: '#0a2540' },
+                { categoria: 'Acessórios',  valor: 7, cor: '#9ed8db' }
             ];
 
             const larguraBarra = 80;
@@ -504,7 +507,7 @@
             function desenharGrafico() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                ctx.strokeStyle = '#2c3e50';
+                ctx.strokeStyle = '#1c2b36';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(40, baseY);
@@ -519,7 +522,7 @@
                     ctx.fillStyle = item.cor;
                     ctx.fillRect(x, baseY - alturaAtual, larguraBarra, alturaAtual);
 
-                    ctx.fillStyle = '#2c3e50';
+                    ctx.fillStyle = '#1c2b36';
                     ctx.font = '14px Segoe UI, Arial, sans-serif';
                     ctx.textAlign = 'center';
                     ctx.fillText(item.categoria, x + larguraBarra / 2, baseY + 20);
