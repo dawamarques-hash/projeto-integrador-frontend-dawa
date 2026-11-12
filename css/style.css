@@ -1,3 +1,24 @@
+/* ===== VARIÁVEIS (paleta da marca) ===== */
+:root {
+    --azul: #0077b6;
+    --azul-claro: #00b4d8;
+    --azul-escuro: #023e8a;
+    --azul-suave: #90e0ef;
+    --azul-bem-claro: #caf0f8;
+    --laranja: #c24e00;          /* escurecido: texto branco passa em contraste AA (4,5:1) */
+    --laranja-escuro: #a84300;
+    --laranja-vivo: #ff6d00;     /* só para detalhes decorativos, nunca para texto */
+    --creme: #fdf6e9;
+    --texto: #2c3e50;
+    --cinza: #6c757d;
+}
+
+/* display:flex/grid dos cards sobrescreve o [hidden] do navegador;
+   sem esta regra o filtro de categorias pararia de esconder produtos */
+[hidden] {
+    display: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +27,8 @@
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #fdf6e9;
-    color: #2c3e50;
+    background-color: var(--creme);
+    color: var(--texto);
     line-height: 1.6;
 }
 
@@ -22,7 +43,7 @@ a {
 
 /* ===== HEADER ===== */
 header {
-    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    background: linear-gradient(135deg, var(--azul-escuro), var(--azul));
     color: #ffffff;
     padding: 1.5rem 2rem;
     position: sticky;
@@ -91,17 +112,30 @@ nav a:focus-visible {
     background-color: rgba(255,255,255,0.25);
 }
 
-/* ===== SEÇÃO INÍCIO ===== */
+/* ===== SEÇÃO INÍCIO (hero) ===== */
 #inicio {
-    background: linear-gradient(135deg, #90e0ef, #caf0f8);
-    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    max-width: none;
+    margin: 0;
+    padding: 5rem 2rem 9rem 2rem;
     text-align: center;
+    color: #ffffff;
+    background: linear-gradient(180deg, var(--azul) 0%, var(--azul-escuro) 100%);
+}
+
+.hero-conteudo {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
 }
 
 #inicio h1 {
-    font-size: 2.5rem;
-    color: #023e8a;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
     margin-bottom: 1rem;
+    line-height: 1.15;
 }
 
 #inicio p {
@@ -113,33 +147,49 @@ nav a:focus-visible {
 .frase-chamativa {
     font-weight: bold;
     font-style: italic;
-    color: #ff6d00;
+    color: #ffd166;
     margin-bottom: 1.5rem;
+}
+
+/* Ilustração decorativa (sol): fica atrás do texto */
+.hero-sol {
+    position: absolute;
+    top: -70px;
+    right: -60px;
+    width: 340px;
+    height: 340px;
+    opacity: 0.9;
+}
+
+/* Onda no rodapé do hero, na cor do fundo da página */
+.hero-onda {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 90px;
+    fill: var(--creme);
 }
 
 .botao-cta {
     display: inline-block;
-    background-color: #ff6d00;
+    background-color: var(--laranja);
     color: #ffffff;
     padding: 0.8rem 1.8rem;
     border-radius: 30px;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     transition: transform 0.2s ease, background 0.3s ease;
 }
 
-/* Usamos transform: translateY() em vez de animar height/margin-top
-   para simular o "levantar" do botão. Animar transform roda na GPU
-   (compositing) e não força o navegador a recalcular layout/paint
-   dos elementos vizinhos a cada frame — diferente de animar
-   width/height, que disparam reflow e são mais custosos. */
+/* transform (GPU) em vez de height/margin-top: não força reflow dos vizinhos */
 .botao-cta:hover {
-    background-color: #e65c00;
+    background-color: var(--laranja-escuro);
     transform: translateY(-3px);
 }
 
 .botao-cta:focus-visible {
-    outline: 3px solid #023e8a;
+    outline: 3px solid #ffffff;
     outline-offset: 3px;
 }
 
@@ -152,7 +202,7 @@ section {
 
 section h2 {
     font-size: 2rem;
-    color: #023e8a;
+    color: var(--azul-escuro);
     margin-bottom: 1.5rem;
     text-align: center;
 }
@@ -183,7 +233,7 @@ section h2 {
     font-weight: bold;
     font-family: inherit;
     font-size: 1rem;
-    color: #2c3e50;
+    color: var(--texto);
     cursor: pointer;
     box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
@@ -197,14 +247,14 @@ section h2 {
 }
 
 .botao-categoria:focus-visible {
-    outline: 3px solid #023e8a;
+    outline: 3px solid var(--azul-escuro);
     outline-offset: 2px;
 }
 
 /* Estado ativo: categoria atualmente selecionada como filtro */
 .botao-categoria.is-ativo {
-    background-color: #0077b6;
-    border-color: #023e8a;
+    background-color: var(--azul);
+    border-color: var(--azul-escuro);
     color: #ffffff;
 }
 
@@ -212,7 +262,7 @@ section h2 {
    ("Todos") como a opção padrão/carro-chefe da lista, sem
    precisar adicionar uma classe extra no HTML. */
 .lista-categorias li:first-child .botao-categoria {
-    border-color: #ff6d00;
+    border-color: var(--laranja-vivo);
 }
 
 /* ===== CATÁLOGO DE PRODUTOS (Grid responsivo, sem media query) ===== */
@@ -223,78 +273,105 @@ section h2 {
 }
 
 article.produto {
+    display: flex;
+    flex-direction: column;
     background-color: #ffffff;
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Novamente transform (translateY) em vez de height/width para o
-   efeito de "flutuar" o card do produto ao passar o mouse — evita
-   reflow da grade inteira durante a animação. */
+/* transform em vez de height/width: evita reflow da grade na animação */
 article.produto:hover {
     transform: translateY(-6px);
+    box-shadow: 0 10px 22px rgba(2, 62, 138, 0.22);
 }
 
-/* Pseudo-classe estrutural :nth-child(even): alterna um leve tom de
-   fundo entre os cards de produto para facilitar a leitura visual
-   da grade, sem precisar de classes "par/ímpar" no HTML. */
+/* Alterna um leve tom de fundo entre cards (pseudo-classe :nth-child) */
 article.produto:nth-child(even) {
     background-color: #f7fbfd;
 }
 
-/* :last-child: dá um destaque sutil ao último produto listado no
-   catálogo (ex.: o mais recente adicionado). */
+/* Destaque sutil no último produto (:last-child) */
 article.produto:last-child {
     box-shadow: 0 4px 14px rgba(255, 109, 0, 0.35);
 }
 
+/* Imagem com proporção fixa; o zoom acontece dentro da moldura */
+.produto-imagem {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--azul-bem-claro);
+}
+
 article.produto img {
     width: 100%;
-    height: 180px;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+article.produto:hover img {
+    transform: scale(1.06);
+}
+
+.etiqueta-categoria {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background-color: var(--azul-escuro);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
 }
 
 .info-produto {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     padding: 1rem;
 }
 
 .info-produto h3 {
     font-size: 1.1rem;
     margin-bottom: 0.4rem;
-    color: #023e8a;
+    color: var(--azul-escuro);
 }
 
-.info-produto .categoria {
-    font-size: 0.85rem;
-    color: #6c757d;
-    margin-bottom: 0.4rem;
+.info-produto p {
+    font-size: 0.92rem;
+    margin-bottom: 0.6rem;
 }
 
 .info-produto .preco {
+    margin-top: auto;
     font-weight: bold;
-    color: #ff6d00;
-    font-size: 1.1rem;
+    color: var(--laranja);
+    font-size: 1.4rem;
     margin-bottom: 0.8rem;
 }
 
 .botao-comprar {
-    display: inline-block;
-    background-color: #0077b6;
+    display: block;
+    text-align: center;
+    background-color: var(--azul);
     color: #ffffff;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-weight: bold;
     transition: background 0.3s ease;
 }
 
 .botao-comprar:hover {
-    background-color: #023e8a;
+    background-color: var(--azul-escuro);
 }
 
 .botao-comprar:focus-visible {
-    outline: 3px solid #023e8a;
+    outline: 3px solid var(--azul-escuro);
     outline-offset: 2px;
 }
 
@@ -309,7 +386,7 @@ table {
 }
 
 thead {
-    background-color: #0077b6;
+    background-color: var(--azul);
     color: #ffffff;
 }
 
@@ -356,12 +433,12 @@ tbody tr:nth-child(even) {
     display: inline-block;
     margin-top: 1rem;
     font-weight: bold;
-    color: #0077b6;
-    border-bottom: 2px solid #0077b6;
+    color: var(--azul);
+    border-bottom: 2px solid var(--azul);
 }
 
 .link-externo:focus-visible {
-    outline: 3px solid #0077b6;
+    outline: 3px solid var(--azul);
     outline-offset: 3px;
 }
 
@@ -384,7 +461,7 @@ fieldset {
 
 legend {
     font-weight: bold;
-    color: #023e8a;
+    color: var(--azul-escuro);
     padding: 0 0.5rem;
 }
 
@@ -417,7 +494,7 @@ textarea {
 }
 
 button[type="submit"] {
-    background-color: #ff6d00;
+    background-color: var(--laranja);
     color: #ffffff;
     border: none;
     padding: 0.8rem;
@@ -430,11 +507,11 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #e65c00;
+    background-color: var(--laranja-escuro);
 }
 
 button[type="submit"]:focus-visible {
-    outline: 3px solid #023e8a;
+    outline: 3px solid var(--azul-escuro);
     outline-offset: 2px;
 }
 
@@ -454,11 +531,11 @@ button[type="submit"]:focus-visible {
     border-top: 6px solid #ccc;
 }
 
-.oferta-item h3 { font-size: 1.05rem; color: #023e8a; margin-bottom: 0.3rem; }
-.oferta-categoria { font-size: 0.85rem; color: #6c757d; margin-bottom: 0.5rem; }
+.oferta-item h3 { font-size: 1.05rem; color: var(--azul-escuro); margin-bottom: 0.3rem; }
+.oferta-categoria { font-size: 0.85rem; color: var(--cinza); margin-bottom: 0.5rem; }
 .oferta-precos { margin-bottom: 0.7rem; }
-.preco-original { text-decoration: line-through; color: #6c757d; font-size: 0.9rem; }
-.preco-final { color: #ff6d00; font-size: 1.15rem; }
+.preco-original { text-decoration: line-through; color: var(--cinza); font-size: 0.9rem; }
+.preco-final { color: var(--laranja); font-size: 1.15rem; }
 
 .selo-faixa {
     display: inline-block;
@@ -470,28 +547,28 @@ button[type="submit"]:focus-visible {
 }
 
 /* Uma classe por faixa: o JS aplica, o CSS decide a aparência */
-.faixa-economico    { border-top-color: #2a9d8f; }
-.faixa-economico .selo-faixa    { background-color: #2a9d8f; }
-.faixa-intermediario { border-top-color: #0077b6; }
-.faixa-intermediario .selo-faixa { background-color: #0077b6; }
-.faixa-premium      { border-top-color: #ff6d00; }
-.faixa-premium .selo-faixa      { background-color: #ff6d00; }
-.faixa-profissional { border-top-color: #023e8a; }
-.faixa-profissional .selo-faixa { background-color: #023e8a; }
+.faixa-economico    { border-top-color: #1e7d72; }
+.faixa-economico .selo-faixa    { background-color: #1e7d72; }
+.faixa-intermediario { border-top-color: var(--azul); }
+.faixa-intermediario .selo-faixa { background-color: var(--azul); }
+.faixa-premium      { border-top-color: var(--laranja); }
+.faixa-premium .selo-faixa      { background-color: var(--laranja); }
+.faixa-profissional { border-top-color: var(--azul-escuro); }
+.faixa-profissional .selo-faixa { background-color: var(--azul-escuro); }
 
 #resumo-ofertas {
     margin-top: 1.5rem;
     padding: 1rem;
     text-align: center;
     font-weight: bold;
-    color: #023e8a;
-    background-color: #caf0f8;
+    color: var(--azul-escuro);
+    background-color: var(--azul-bem-claro);
     border-radius: 10px;
 }
 
 /* ===== RODAPÉ ===== */
 footer {
-    background-color: #023e8a;
+    background-color: var(--azul-escuro);
     color: #ffffff;
     padding: 2.5rem 2rem;
     text-align: center;
@@ -528,4 +605,22 @@ footer p {
     margin-top: 1rem;
     font-size: 0.8rem;
     opacity: 0.8;
+}
+
+/* ===== FOCO EM CAMPOS DE FORMULÁRIO ===== */
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.25);
+}
+
+/* ===== RESPEITA QUEM PREFERE MENOS MOVIMENTO ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
 }
