@@ -1,0 +1,531 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #fdf6e9;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: #ffffff;
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.header-conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.logo-loja {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.icone-bola {
+    flex-shrink: 0;
+}
+
+.logo-loja .logo-nome {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.logo-loja p.tagline {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ===== NAVEGAÇÃO (Flexbox) ===== */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-weight: bold;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Estado :hover para mouse */
+nav a:hover {
+    background-color: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* Estado :focus-visible para navegação via teclado (Tab).
+   Diferente de :focus, :focus-visible só aparece quando o
+   navegador entende que o usuário está navegando por teclado,
+   evitando o contorno aparecer em cliques de mouse. */
+nav a:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+    background-color: rgba(255,255,255,0.25);
+}
+
+/* ===== SEÇÃO INÍCIO ===== */
+#inicio {
+    background: linear-gradient(135deg, #90e0ef, #caf0f8);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+#inicio h1 {
+    font-size: 2.5rem;
+    color: #023e8a;
+    margin-bottom: 1rem;
+}
+
+#inicio p {
+    max-width: 650px;
+    margin: 0 auto 1rem auto;
+    font-size: 1.1rem;
+}
+
+.frase-chamativa {
+    font-weight: bold;
+    font-style: italic;
+    color: #ff6d00;
+    margin-bottom: 1.5rem;
+}
+
+.botao-cta {
+    display: inline-block;
+    background-color: #ff6d00;
+    color: #ffffff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Usamos transform: translateY() em vez de animar height/margin-top
+   para simular o "levantar" do botão. Animar transform roda na GPU
+   (compositing) e não força o navegador a recalcular layout/paint
+   dos elementos vizinhos a cada frame — diferente de animar
+   width/height, que disparam reflow e são mais custosos. */
+.botao-cta:hover {
+    background-color: #e65c00;
+    transform: translateY(-3px);
+}
+
+.botao-cta:focus-visible {
+    outline: 3px solid #023e8a;
+    outline-offset: 3px;
+}
+
+/* ===== SEÇÕES GERAIS ===== */
+section {
+    padding: 3rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-size: 2rem;
+    color: #023e8a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* ===== CATEGORIAS (Grid) ===== */
+.lista-categorias {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+}
+
+.lista-categorias li {
+    /* O <li> agora só posiciona o botão dentro da grade;
+       a aparência visual (fundo, sombra, padding) vive em
+       .botao-categoria, que é o elemento realmente interativo. */
+    list-style: none;
+}
+
+/* Botão de filtro de categoria */
+.botao-categoria {
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #2c3e50;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Mesmo raciocínio do .botao-cta: o "levantar" do card usa
+   transform (composta na GPU), nunca height/width, que forçariam
+   reflow de toda a grade a cada frame da transição. */
+.botao-categoria:hover {
+    transform: translateY(-5px);
+}
+
+.botao-categoria:focus-visible {
+    outline: 3px solid #023e8a;
+    outline-offset: 2px;
+}
+
+/* Estado ativo: categoria atualmente selecionada como filtro */
+.botao-categoria.is-ativo {
+    background-color: #0077b6;
+    border-color: #023e8a;
+    color: #ffffff;
+}
+
+/* Pseudo-classe estrutural: destaca visualmente o primeiro botão
+   ("Todos") como a opção padrão/carro-chefe da lista, sem
+   precisar adicionar uma classe extra no HTML. */
+.lista-categorias li:first-child .botao-categoria {
+    border-color: #ff6d00;
+}
+
+/* ===== CATÁLOGO DE PRODUTOS (Grid responsivo, sem media query) ===== */
+.grid-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+}
+
+article.produto {
+    background-color: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease;
+}
+
+/* Novamente transform (translateY) em vez de height/width para o
+   efeito de "flutuar" o card do produto ao passar o mouse — evita
+   reflow da grade inteira durante a animação. */
+article.produto:hover {
+    transform: translateY(-6px);
+}
+
+/* Pseudo-classe estrutural :nth-child(even): alterna um leve tom de
+   fundo entre os cards de produto para facilitar a leitura visual
+   da grade, sem precisar de classes "par/ímpar" no HTML. */
+article.produto:nth-child(even) {
+    background-color: #f7fbfd;
+}
+
+/* :last-child: dá um destaque sutil ao último produto listado no
+   catálogo (ex.: o mais recente adicionado). */
+article.produto:last-child {
+    box-shadow: 0 4px 14px rgba(255, 109, 0, 0.35);
+}
+
+article.produto img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.info-produto {
+    padding: 1rem;
+}
+
+.info-produto h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    color: #023e8a;
+}
+
+.info-produto .categoria {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0.4rem;
+}
+
+.info-produto .preco {
+    font-weight: bold;
+    color: #ff6d00;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.botao-comprar {
+    display: inline-block;
+    background-color: #0077b6;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.botao-comprar:hover {
+    background-color: #023e8a;
+}
+
+.botao-comprar:focus-visible {
+    outline: 3px solid #023e8a;
+    outline-offset: 2px;
+}
+
+/* ===== TABELA ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+thead {
+    background-color: #0077b6;
+    color: #ffffff;
+}
+
+th, td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f9fc;
+}
+
+/* ===== ESTATÍSTICAS (CANVAS) ===== */
+.container-grafico {
+    display: flex;
+    justify-content: center;
+}
+
+#grafico-categorias {
+    max-width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ===== SOBRE NÓS / BENEFÍCIOS ===== */
+.lista-beneficios {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+}
+
+.lista-beneficios li {
+    background-color: #ffffff;
+    padding: 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== LINK EXTERNO ===== */
+.link-externo {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #0077b6;
+    border-bottom: 2px solid #0077b6;
+}
+
+.link-externo:focus-visible {
+    outline: 3px solid #0077b6;
+    outline-offset: 3px;
+}
+
+/* ===== FORMULÁRIOS (CONTATO E AVALIAÇÃO) ===== */
+form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+fieldset {
+    border: 1px solid #d0d7de;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    font-weight: bold;
+    color: #023e8a;
+    padding: 0 0.5rem;
+}
+
+.campo-formulario {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-formulario:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+input, textarea, select {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button[type="submit"] {
+    background-color: #ff6d00;
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #e65c00;
+}
+
+button[type="submit"]:focus-visible {
+    outline: 3px solid #023e8a;
+    outline-offset: 2px;
+}
+
+/* ===== OFERTAS (JS: funções + DOM) ===== */
+#lista-ofertas {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+}
+
+.oferta-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    border-top: 6px solid #ccc;
+}
+
+.oferta-item h3 { font-size: 1.05rem; color: #023e8a; margin-bottom: 0.3rem; }
+.oferta-categoria { font-size: 0.85rem; color: #6c757d; margin-bottom: 0.5rem; }
+.oferta-precos { margin-bottom: 0.7rem; }
+.preco-original { text-decoration: line-through; color: #6c757d; font-size: 0.9rem; }
+.preco-final { color: #ff6d00; font-size: 1.15rem; }
+
+.selo-faixa {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Uma classe por faixa: o JS aplica, o CSS decide a aparência */
+.faixa-economico    { border-top-color: #2a9d8f; }
+.faixa-economico .selo-faixa    { background-color: #2a9d8f; }
+.faixa-intermediario { border-top-color: #0077b6; }
+.faixa-intermediario .selo-faixa { background-color: #0077b6; }
+.faixa-premium      { border-top-color: #ff6d00; }
+.faixa-premium .selo-faixa      { background-color: #ff6d00; }
+.faixa-profissional { border-top-color: #023e8a; }
+.faixa-profissional .selo-faixa { background-color: #023e8a; }
+
+#resumo-ofertas {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: #023e8a;
+    background-color: #caf0f8;
+    border-radius: 10px;
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+    background-color: #023e8a;
+    color: #ffffff;
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+footer h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+footer p {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+}
+
+.redes-sociais {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.redes-sociais a {
+    font-weight: bold;
+    border-bottom: 1px solid #ffffff;
+}
+
+.redes-sociais a:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.copyright {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
