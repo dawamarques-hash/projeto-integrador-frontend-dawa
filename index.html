@@ -42,10 +42,23 @@
     <main>
 
         <section id="inicio">
-            <h1>FuteVibe - Loja de Artigos de Futevôlei</h1>
-            <p>Somos uma loja especializada em produtos para quem vive o futevôlei: bolas, redes, roupas esportivas e acessórios pensados para o seu melhor desempenho na areia.</p>
-            <p class="frase-chamativa">Areia, sol e futevôlei: equipamentos que acompanham o seu jogo.</p>
-            <a href="#produtos" class="botao-cta">Ver produtos</a>
+            <!-- Ilustrações decorativas: aria-hidden para leitores de tela ignorarem -->
+            <svg class="hero-sol" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                <circle cx="100" cy="100" r="95" fill="#ffd166" opacity="0.25"/>
+                <circle cx="100" cy="100" r="70" fill="#ffd166" opacity="0.45"/>
+                <circle cx="100" cy="100" r="46" fill="#ffd166"/>
+            </svg>
+
+            <div class="hero-conteudo">
+                <h1>FuteVibe - Loja de Artigos de Futevôlei</h1>
+                <p>Somos uma loja especializada em produtos para quem vive o futevôlei: bolas, redes, roupas esportivas e acessórios pensados para o seu melhor desempenho na areia.</p>
+                <p class="frase-chamativa">Areia, sol e futevôlei: equipamentos que acompanham o seu jogo.</p>
+                <a href="#produtos" class="botao-cta">Ver produtos</a>
+            </div>
+
+            <svg class="hero-onda" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path d="M0,64 C240,120 480,0 720,48 C960,96 1200,112 1440,48 L1440,120 L0,120 Z"/>
+            </svg>
         </section>
 
         <section id="categorias">
@@ -102,132 +115,156 @@
             <div class="grid-produtos">
 
                 <article class="produto" data-categoria="Bolas de Futevôlei">
-                    <img src="assets/images/bola-futevolei.png" alt="Bola oficial para prática de futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/bola-futevolei.png" alt="Bola oficial para prática de futevôlei">
+                        <span class="etiqueta-categoria">Bolas de Futevôlei</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Bola de Futevôlei Oficial</h3>
                         <p>Bola emborrachada, ideal para treinos e partidas na areia.</p>
-                        <p class="categoria">Categoria: Bolas de Futevôlei</p>
                         <p class="preco">R$ 149,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Redes">
-                    <img src="assets/images/rede-futevolei.png" alt="Rede oficial de futevôlei com suportes">
+                    <div class="produto-imagem">
+                        <img src="assets/images/rede-futevolei.png" alt="Rede oficial de futevôlei com suportes">
+                        <span class="etiqueta-categoria">Redes</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Rede de Futevôlei Profissional</h3>
                         <p>Rede resistente com suportes reforçados para quadras de areia.</p>
-                        <p class="categoria">Categoria: Redes</p>
                         <p class="preco">R$ 898,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Roupas Esportivas">
-                    <img src="assets/images/camisa-futevolei.png" alt="Camisa esportiva dry-fit para futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/camisa-futevolei.png" alt="Camisa esportiva dry-fit para futevôlei">
+                        <span class="etiqueta-categoria">Roupas Esportivas</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Camisa Esportiva Dry-Fit</h3>
                         <p>Tecido leve e respirável, ideal para dias quentes na praia.</p>
-                        <p class="categoria">Categoria: Roupas Esportivas</p>
                         <p class="preco">R$ 79,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Roupas Esportivas">
-                    <img src="assets/images/shorts-futevolei.png" alt="Shorts esportivo masculino para futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/shorts-futevolei.png" alt="Shorts esportivo masculino para futevôlei">
+                        <span class="etiqueta-categoria">Roupas Esportivas</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Shorts Esportivo Masculino</h3>
                         <p>Confortável e resistente, feito para alta movimentação.</p>
-                        <p class="categoria">Categoria: Roupas Esportivas</p>
                         <p class="preco">R$ 59,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Acessórios">
-                    <img src="assets/images/oculos-futevolei.png" alt="Óculos de sol esportivo para praia">
+                    <div class="produto-imagem">
+                        <img src="assets/images/oculos-futevolei.png" alt="Óculos de sol esportivo para praia">
+                        <span class="etiqueta-categoria">Acessórios</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Óculos de Sol Esportivo</h3>
                         <p>Proteção UV com armação leve, perfeito para dias de sol.</p>
-                        <p class="categoria">Categoria: Acessórios</p>
                         <p class="preco">R$ 129,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Acessórios">
-                    <img src="assets/images/bone-futevolei.png" alt="Boné esportivo para prática de futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/bone-futevolei.png" alt="Boné esportivo para prática de futevôlei">
+                        <span class="etiqueta-categoria">Acessórios</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Boné Esportivo</h3>
                         <p>Proteção solar para a cabeça durante os jogos na areia.</p>
-                        <p class="categoria">Categoria: Acessórios</p>
                         <p class="preco">R$ 49,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Kits de Futevôlei">
-                    <img src="assets/images/kit-futevolei.png" alt="Kit iniciante completo de futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/kit-futevolei.png" alt="Kit iniciante completo de futevôlei">
+                        <span class="etiqueta-categoria">Kits de Futevôlei</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Kit Iniciante Futevôlei</h3>
                         <p>Bola, camisa e boné em um kit completo para começar a jogar.</p>
-                        <p class="categoria">Categoria: Kits de Futevôlei</p>
                         <p class="preco">R$ 249,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Acessórios">
-                    <img src="assets/images/tornozeleira-futevolei.png" alt="Tornozeleira de proteção esportiva">
+                    <div class="produto-imagem">
+                        <img src="assets/images/tornozeleira-futevolei.png" alt="Tornozeleira de proteção esportiva">
+                        <span class="etiqueta-categoria">Acessórios</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Tornozeleira de Proteção</h3>
                         <p>Suporte e proteção para os tornozelos durante o jogo.</p>
-                        <p class="categoria">Categoria: Acessórios</p>
                         <p class="preco">R$ 39,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Acessórios">
-                    <img src="assets/images/luva-futevolei.png" alt="Luvas de treino para futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/luva-futevolei.png" alt="Luvas de treino para futevôlei">
+                        <span class="etiqueta-categoria">Acessórios</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Luvas para Treino</h3>
                         <p>Aderência e conforto para treinos de saque e manchete.</p>
-                        <p class="categoria">Categoria: Acessórios</p>
                         <p class="preco">R$ 34,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Acessórios">
-                    <img src="assets/images/mochila-futevolei.png" alt="Mochila esportiva para levar equipamentos de futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/mochila-futevolei.png" alt="Mochila esportiva para levar equipamentos de futevôlei">
+                        <span class="etiqueta-categoria">Acessórios</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Mochila Esportiva</h3>
                         <p>Espaço amplo para transportar bola, roupas e acessórios.</p>
-                        <p class="categoria">Categoria: Acessórios</p>
                         <p class="preco">R$ 159,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Acessórios">
-                    <img src="assets/images/garrafa-futevolei.png" alt="Garrafa térmica esportiva para hidratação">
+                    <div class="produto-imagem">
+                        <img src="assets/images/garrafa-futevolei.png" alt="Garrafa térmica esportiva para hidratação">
+                        <span class="etiqueta-categoria">Acessórios</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Garrafa Térmica Esportiva</h3>
                         <p>Mantém a água gelada durante os treinos e partidas.</p>
-                        <p class="categoria">Categoria: Acessórios</p>
                         <p class="preco">R$ 69,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
                 </article>
 
                 <article class="produto" data-categoria="Acessórios">
-                    <img src="assets/images/toalha-futevolei.png" alt="Toalha esportiva de praia para futevôlei">
+                    <div class="produto-imagem">
+                        <img src="assets/images/toalha-futevolei.png" alt="Toalha esportiva de praia para futevôlei">
+                        <span class="etiqueta-categoria">Acessórios</span>
+                    </div>
                     <div class="info-produto">
                         <h3>Toalha Esportiva de Praia</h3>
                         <p>Toalha de secagem rápida, ideal para o pós-jogo na praia.</p>
-                        <p class="categoria">Categoria: Acessórios</p>
                         <p class="preco">R$ 44,90</p>
                         <a href="#contato" class="botao-comprar">Comprar</a>
                     </div>
